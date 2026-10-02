@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/MaxMoskalenko/tx-technical-challenge/internal/proto";
+
+service API {
+    rpc GetArbitrageOpportunities (GetArbitrageOpportunitiesRequest) returns (GetArbitrageOpportunitiesResponse) {}
+}
+
+message GetArbitrageOpportunitiesRequest {
+    repeated Market markets = 1;
+}
+
+message Market {
+    string base_currency = 1;
+    string quote_currency = 2;
+    string exchange_rate = 3;
+}
+
+message GetArbitrageOpportunitiesResponse {
+    repeated ArbitrageOpportunity opportunities = 1;
+}
+
+message ArbitrageOpportunity {
+    repeated string path = 1;
+    string profitability = 2;
+}
